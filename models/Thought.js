@@ -1,7 +1,6 @@
-const {Schema, model} =  require('mongoose')
+const { Schema, model } = require("mongoose");
+const ReactionSchema = require("./Reaction");
 const dateFormat = require("../utils/dateFormat");
-
-const ReactionSchema =  require('./Reaction');
 
 const ThoughtSchema = new Schema(
   {
@@ -10,7 +9,6 @@ const ThoughtSchema = new Schema(
       required: true,
       minlength: 1,
       maxlength: 280,
-      trim: true,
     },
     createdAt: {
       type: Date,
@@ -26,14 +24,13 @@ const ThoughtSchema = new Schema(
   },
   {
     toJSON: {
-      virtuals: true,
       getters: true,
     },
     id: false,
   }
 );
 
-// get total count of friends
+// get total count of reactions
 ThoughtSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
