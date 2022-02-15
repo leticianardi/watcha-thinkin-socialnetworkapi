@@ -77,6 +77,7 @@ const userController = {
             .json({ message: "[delete] No user found with this id!" });
           return;
         }
+        // get ids of user's `thoughts` and delete them all
         return Thought.deleteMany({ _id: { $in: dbUserData.thoughts } });
       })
       .then((dbThoughtdata) => {
